@@ -86,7 +86,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Legal Case Management System
+              Case Management System
             </h1>
             <p className="text-gray-600">
               Manage clients, matters, lenders, and generate letters efficiently
