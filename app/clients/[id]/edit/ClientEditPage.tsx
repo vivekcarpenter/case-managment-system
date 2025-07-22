@@ -1,8 +1,7 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Header from '../../../../components/Header';
 import CustomFieldRenderer from '../../../../components/CustomFieldRenderer';
 import Link from 'next/link';
@@ -27,10 +26,12 @@ interface Client {
   specialRequirements?: string;
 }
 
-export default function ClientEditPage() {
-  const params = useParams();
+interface ClientEditPageProps {
+  clientId: string;
+}
+
+export default function ClientEditPage({ clientId }: ClientEditPageProps) {
   const router = useRouter();
-  const clientId = params.id as string;
 
   const [client, setClient] = useState<Client | null>(null);
   const [loading, setLoading] = useState(true);
@@ -459,7 +460,6 @@ export default function ClientEditPage() {
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Client Tags</h3>
             <p className="text-gray-600 mb-4">Select tags that apply to this client</p>
-
             <div className="flex flex-wrap gap-2">
               {availableTags.map(tag => (
                 <button

@@ -1,6 +1,6 @@
-
 import ClientEditPage from './ClientEditPage';
 
+// For SSG (optional)
 export async function generateStaticParams() {
   return [
     { id: '1' },
@@ -11,6 +11,12 @@ export async function generateStaticParams() {
   ];
 }
 
-export default function ClientEditPageWithParams({ params }: { params: { id: string } }) {
-  return <ClientEditPage />;
+// Next.js 15: params is a Promise and must be awaited
+export default async function ClientEditPageWithParams({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  return <ClientEditPage clientId={id} />;
 }
