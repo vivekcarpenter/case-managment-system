@@ -282,58 +282,60 @@ export default function AuditDashboard() {
   };
 
   return (
-    <div className="space-y-6">
+   <div className="space-y-6 px-2 sm:px-4 md:px-8 py-4">
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* 1. Total Actions */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Actions</p>
-              <p className="text-2xl font-bold text-gray-900">{mockAuditData.length}</p>
+              <p className="text-xs sm:text-sm font-medium text-gray-600">Total Actions</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">{mockAuditData.length}</p>
             </div>
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-              <i className="ri-history-line w-6 h-6 text-blue-600"></i>
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+              <i className="ri-history-line w-5 h-5 sm:w-6 sm:h-6 text-blue-600"></i>
             </div>
           </div>
         </div>
-
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        {/* 2. Active Users */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Active Users</p>
-              <p className="text-2xl font-bold text-gray-900">{users.length - 1}</p>
+              <p className="text-xs sm:text-sm font-medium text-gray-600">Active Users</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">{users.length - 1}</p>
             </div>
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-              <i className="ri-user-line w-6 h-6 text-green-600"></i>
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center">
+              <i className="ri-user-line w-5 h-5 sm:w-6 sm:h-6 text-green-600"></i>
             </div>
           </div>
         </div>
-
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        {/* 3. Today's Actions */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Today's Actions</p>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-xs sm:text-sm font-medium text-gray-600">Today's Actions</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">
                 {mockAuditData.filter(entry => 
                   new Date(entry.timestamp).toDateString() === new Date().toDateString()
                 ).length}
               </p>
             </div>
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-              <i className="ri-calendar-line w-6 h-6 text-purple-600"></i>
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+              <i className="ri-calendar-line w-5 h-5 sm:w-6 sm:h-6 text-purple-600"></i>
             </div>
           </div>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">Filters</h3>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6">
+        {/* Top bar */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
+          <h3 className="text-base sm:text-lg font-semibold text-gray-900">Filters</h3>
           <button
             onClick={exportToCsv}
             disabled={isExporting}
-            className="text-white px-4 py-2 rounded-lg hover:opacity-90 disabled:opacity-50 transition-colors whitespace-nowrap cursor-pointer"
+            className="text-white px-3 py-2 rounded-lg hover:opacity-90 disabled:opacity-50 transition-colors whitespace-nowrap cursor-pointer"
             style={{ backgroundColor: '#334960' }}
           >
             {isExporting ? (
@@ -349,8 +351,10 @@ export default function AuditDashboard() {
             )}
           </button>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        {/* Responsive grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {/* The five filter boxes, same as your code (for DATE, USER, ACTION, MATTER, SEARCH) */}
+          {/* ...first 2 columns... */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
             <input
@@ -358,10 +362,8 @@ export default function AuditDashboard() {
               value={filters.dateRange.start}
               onChange={(e) => handleFilterChange('startDate', e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:border-transparent"
-              style={{ '&:focus': { borderColor: '#f46524', boxShadow: '0 0 0 2px rgba(244, 101, 36, 0.2)' } }}
             />
           </div>
-
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">End Date</label>
             <input
@@ -369,38 +371,32 @@ export default function AuditDashboard() {
               value={filters.dateRange.end}
               onChange={(e) => handleFilterChange('endDate', e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:border-transparent"
-              style={{ '&:focus': { borderColor: '#f46524', boxShadow: '0 0 0 2px rgba(244, 101, 36, 0.2)' } }}
             />
           </div>
-
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">User</label>
             <select
               value={filters.user}
               onChange={(e) => handleFilterChange('user', e.target.value)}
               className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md text-sm focus:ring-2 focus:border-transparent"
-              style={{ '&:focus': { borderColor: '#f46524', boxShadow: '0 0 0 2px rgba(244, 101, 36, 0.2)' } }}
             >
               {users.map(user => (
                 <option key={user.value} value={user.value}>{user.label}</option>
               ))}
             </select>
           </div>
-
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Action Type</label>
             <select
               value={filters.action}
               onChange={(e) => handleFilterChange('action', e.target.value)}
               className="w-full px-3 py-2 pr-8 border border-gray-300 rounded-md text-sm focus:ring-2 focus:border-transparent"
-              style={{ '&:focus': { borderColor: '#f46524', boxShadow: '0 0 0 2px rgba(244, 101, 36, 0.2)' } }}
             >
               {actionTypes.map(type => (
                 <option key={type.value} value={type.value}>{type.label}</option>
               ))}
             </select>
           </div>
-
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Search</label>
             <div className="relative">
@@ -410,7 +406,6 @@ export default function AuditDashboard() {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search actions..."
                 className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-md text-sm focus:ring-2 focus:border-transparent"
-                style={{ '&:focus': { borderColor: '#f46524', boxShadow: '0 0 0 2px rgba(244, 101, 36, 0.2)' } }}
               />
               <i className="ri-search-line w-4 h-4 absolute left-3 top-2.5 text-gray-400 flex items-center justify-center"></i>
             </div>
@@ -420,16 +415,15 @@ export default function AuditDashboard() {
 
       {/* Tab Navigation */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="border-b border-gray-200">
-          <nav className="flex space-x-8 px-6">
+        <div className="border-b border-gray-200 overflow-x-auto">
+          <nav className="flex min-w-max sm:space-x-8 space-x-4 px-2 sm:px-6">
             <button
               onClick={() => setActiveTab('all')}
               className={`py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap cursor-pointer ${
                 activeTab === 'all'
-                  ? 'text-white'
+                  ? 'border-orange-500 text-orange-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
-              style={activeTab === 'all' ? { borderBottomColor: '#f46524', color: '#f46524' } : {}}
             >
               <i className="ri-list-line w-4 h-4 inline mr-2"></i>
               All Activity
@@ -438,10 +432,9 @@ export default function AuditDashboard() {
               onClick={() => setActiveTab('users')}
               className={`py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap cursor-pointer ${
                 activeTab === 'users'
-                  ? 'text-white'
+                  ? 'border-orange-500 text-orange-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
-              style={activeTab === 'users' ? { borderBottomColor: '#f46524', color: '#f46524' } : {}}
             >
               <i className="ri-user-line w-4 h-4 inline mr-2"></i>
               Per-User Activity
@@ -449,11 +442,11 @@ export default function AuditDashboard() {
           </nav>
         </div>
 
-        <div className="p-6">
+        <div className="p-2 sm:p-6">
           {activeTab === 'all' && (
             <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gray-50">
+              <table className="w-full min-w-[700px]">
+                <thead className="bg-gray-50 text-xs sm:text-sm">
                   <tr>
                     <th className="text-left py-3 px-4 font-medium text-gray-900">Action</th>
                     <th className="text-left py-3 px-4 font-medium text-gray-900">User</th>
@@ -489,7 +482,7 @@ export default function AuditDashboard() {
                         <td className="py-4 px-4">
                           <div>
                             <p className="text-gray-900 font-medium">{dateTime.date}</p>
-                            <p className="text-sm text-gray-500">{dateTime.time}</p>
+                            <p className="text-xs sm:text-sm text-gray-500">{dateTime.time}</p>
                           </div>
                         </td>
                         <td className="py-4 px-4">
@@ -539,11 +532,11 @@ export default function AuditDashboard() {
           )}
 
           {activeTab === 'users' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {userActivityData.map((userData) => (
-                <div key={userData.user} className="bg-gray-50 rounded-lg p-6">
+                <div key={userData.user} className="bg-gray-50 rounded-lg p-4 sm:p-6">
                   <div className="flex items-center space-x-4 mb-4">
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#f46524' }}>
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#f46524' }}>
                       <span className="text-white font-semibold">
                         {userData.user.split(' ').map(n => n[0]).join('')}
                       </span>
@@ -555,30 +548,28 @@ export default function AuditDashboard() {
                       </p>
                     </div>
                   </div>
-
                   <div className="space-y-2 mb-4">
-                    <div className="flex justify-between text-sm">
+                    <div className="flex justify-between text-xs sm:text-sm">
                       <span className="text-gray-600">Created:</span>
                       <span className="font-medium">{userData.actions.create}</span>
                     </div>
-                    <div className="flex justify-between text-sm">
+                    <div className="flex justify-between text-xs sm:text-sm">
                       <span className="text-gray-600">Edited:</span>
                       <span className="font-medium">{userData.actions.edit}</span>
                     </div>
-                    <div className="flex justify-between text-sm">
+                    <div className="flex justify-between text-xs sm:text-sm">
                       <span className="text-gray-600">Sent:</span>
                       <span className="font-medium">{userData.actions.send}</span>
                     </div>
-                    <div className="flex justify-between text-sm">
+                    <div className="flex justify-between text-xs sm:text-sm">
                       <span className="text-gray-600">Completed:</span>
                       <span className="font-medium">{userData.actions.complete}</span>
                     </div>
-                    <div className="flex justify-between text-sm">
+                    <div className="flex justify-between text-xs sm:text-sm">
                       <span className="text-gray-600">Assigned:</span>
                       <span className="font-medium">{userData.actions.assign}</span>
                     </div>
                   </div>
-
                   {userData.lastActivity && (
                     <div className="border-t border-gray-200 pt-3">
                       <p className="text-xs text-gray-500">
@@ -594,8 +585,8 @@ export default function AuditDashboard() {
       </div>
 
       {/* Results Summary */}
-      <div className="bg-blue-50 rounded-lg p-4">
-        <p className="text-sm text-blue-700">
+      <div className="bg-blue-50 rounded-lg p-2 sm:p-4">
+        <p className="text-xs sm:text-sm text-blue-700">
           {activeTab === 'all' 
             ? `Showing ${filteredData.length} of ${mockAuditData.length} audit entries`
             : `Showing activity for ${userActivityData.length} users`

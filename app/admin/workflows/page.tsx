@@ -1,16 +1,15 @@
+"use client";
 
-'use client';
-
-import { useState } from 'react';
-import Link from 'next/link';
-import Header from '../../../components/Header';
+import { useState } from "react";
+import Link from "next/link";
+import Header from "../../../components/Header";
 
 interface WorkflowTemplate {
   id: string;
   name: string;
   description: string;
   matterType: string;
-  status: 'active' | 'draft' | 'archived';
+  status: "active" | "draft" | "archived";
   stepCount: number;
   createdBy: string;
   createdAt: string;
@@ -22,130 +21,153 @@ interface WorkflowTemplate {
 export default function WorkflowsPage() {
   const [templates, setTemplates] = useState<WorkflowTemplate[]>([
     {
-      id: '1',
-      name: 'Standard PPI Claims Process',
-      description: 'Complete workflow for processing PPI claims from initial assessment to settlement',
-      matterType: 'PPI Claims',
-      status: 'active',
+      id: "1",
+      name: "Standard PPI Claims Process",
+      description:
+        "Complete workflow for processing PPI claims from initial assessment to settlement",
+      matterType: "PPI Claims",
+      status: "active",
       stepCount: 6,
-      createdBy: 'John Smith',
-      createdAt: '2024-01-10T10:00:00Z',
-      lastModified: '2024-01-15T14:30:00Z',
+      createdBy: "John Smith",
+      createdAt: "2024-01-10T10:00:00Z",
+      lastModified: "2024-01-15T14:30:00Z",
       usageCount: 142,
-      averageCompletionTime: 21
+      averageCompletionTime: 21,
     },
     {
-      id: '2',
-      name: 'Packaged Bank Account Claims',
-      description: 'Workflow template for packaged bank account mis-selling claims',
-      matterType: 'Packaged Bank Accounts',
-      status: 'active',
+      id: "2",
+      name: "Packaged Bank Account Claims",
+      description:
+        "Workflow template for packaged bank account mis-selling claims",
+      matterType: "Packaged Bank Accounts",
+      status: "active",
       stepCount: 5,
-      createdBy: 'Sarah Johnson',
-      createdAt: '2024-01-12T09:00:00Z',
-      lastModified: '2024-01-18T11:15:00Z',
+      createdBy: "Sarah Johnson",
+      createdAt: "2024-01-12T09:00:00Z",
+      lastModified: "2024-01-18T11:15:00Z",
       usageCount: 89,
-      averageCompletionTime: 18
+      averageCompletionTime: 18,
     },
     {
-      id: '3',
-      name: 'Mortgage Mis-selling Claims',
-      description: 'Comprehensive workflow for mortgage mis-selling investigations',
-      matterType: 'Mortgage Mis-selling',
-      status: 'draft',
+      id: "3",
+      name: "Mortgage Mis-selling Claims",
+      description:
+        "Comprehensive workflow for mortgage mis-selling investigations",
+      matterType: "Mortgage Mis-selling",
+      status: "draft",
       stepCount: 8,
-      createdBy: 'Michael Brown',
-      createdAt: '2024-01-14T15:00:00Z',
-      lastModified: '2024-01-20T16:45:00Z',
+      createdBy: "Michael Brown",
+      createdAt: "2024-01-14T15:00:00Z",
+      lastModified: "2024-01-20T16:45:00Z",
       usageCount: 0,
-      averageCompletionTime: 0
+      averageCompletionTime: 0,
     },
     {
-      id: '4',
-      name: 'Credit Card Claims Process',
-      description: 'Workflow for processing credit card related claims',
-      matterType: 'Credit Card Claims',
-      status: 'active',
+      id: "4",
+      name: "Credit Card Claims Process",
+      description: "Workflow for processing credit card related claims",
+      matterType: "Credit Card Claims",
+      status: "active",
       stepCount: 4,
-      createdBy: 'Emma Davis',
-      createdAt: '2024-01-16T12:30:00Z',
-      lastModified: '2024-01-19T10:20:00Z',
+      createdBy: "Emma Davis",
+      createdAt: "2024-01-16T12:30:00Z",
+      lastModified: "2024-01-19T10:20:00Z",
       usageCount: 34,
-      averageCompletionTime: 14
+      averageCompletionTime: 14,
     },
     {
-      id: '5',
-      name: 'Legacy PPI Process v1',
-      description: 'Original PPI claims workflow - now archived',
-      matterType: 'PPI Claims',
-      status: 'archived',
+      id: "5",
+      name: "Legacy PPI Process v1",
+      description: "Original PPI claims workflow - now archived",
+      matterType: "PPI Claims",
+      status: "archived",
       stepCount: 7,
-      createdBy: 'John Smith',
-      createdAt: '2023-12-01T08:00:00Z',
-      lastModified: '2024-01-10T09:30:00Z',
+      createdBy: "John Smith",
+      createdAt: "2023-12-01T08:00:00Z",
+      lastModified: "2024-01-10T09:30:00Z",
       usageCount: 78,
-      averageCompletionTime: 25
+      averageCompletionTime: 25,
     },
     {
-      id: '6',
-      name: 'Motor Finance Claims',
-      description: 'Workflow for motor finance commission claims',
-      matterType: 'Motor Finance Claims',
-      status: 'active',
+      id: "6",
+      name: "Motor Finance Claims",
+      description: "Workflow for motor finance commission claims",
+      matterType: "Motor Finance Claims",
+      status: "active",
       stepCount: 6,
-      createdBy: 'David Wilson',
-      createdAt: '2024-01-18T14:00:00Z',
-      lastModified: '2024-01-22T11:30:00Z',
+      createdBy: "David Wilson",
+      createdAt: "2024-01-18T14:00:00Z",
+      lastModified: "2024-01-22T11:30:00Z",
       usageCount: 15,
-      averageCompletionTime: 19
-    }
+      averageCompletionTime: 19,
+    },
   ]);
 
-  const [selectedStatus, setSelectedStatus] = useState<'all' | 'active' | 'draft' | 'archived'>('all');
-  const [selectedMatterType, setSelectedMatterType] = useState('all');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState<'name' | 'created' | 'modified' | 'usage'>('modified');
+  const [selectedStatus, setSelectedStatus] = useState<
+    "all" | "active" | "draft" | "archived"
+  >("all");
+  const [selectedMatterType, setSelectedMatterType] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState<
+    "name" | "created" | "modified" | "usage"
+  >("modified");
   const [showDeleteModal, setShowDeleteModal] = useState<string | null>(null);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const matterTypes = [
-    'PPI Claims',
-    'Packaged Bank Accounts',
-    'Mortgage Mis-selling',
-    'Credit Card Claims',
-    'Motor Finance Claims',
-    'Unaffordable Credit'
+    "PPI Claims",
+    "Packaged Bank Accounts",
+    "Mortgage Mis-selling",
+    "Credit Card Claims",
+    "Motor Finance Claims",
+    "Unaffordable Credit",
   ];
 
-  const filteredTemplates = templates.filter(template => {
-    const matchesStatus = selectedStatus === 'all' || template.status === selectedStatus;
-    const matchesMatterType = selectedMatterType === 'all' || template.matterType === selectedMatterType;
-    const matchesSearch = template.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         template.description.toLowerCase().includes(searchTerm.toLowerCase());
-    
+  const filteredTemplates = templates.filter((template) => {
+    const matchesStatus =
+      selectedStatus === "all" || template.status === selectedStatus;
+    const matchesMatterType =
+      selectedMatterType === "all" ||
+      template.matterType === selectedMatterType;
+    const matchesSearch =
+      template.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      template.description.toLowerCase().includes(searchTerm.toLowerCase());
+
     return matchesStatus && matchesMatterType && matchesSearch;
   });
 
   const sortedTemplates = [...filteredTemplates].sort((a, b) => {
     switch (sortBy) {
-      case 'name':
+      case "name":
         return a.name.localeCompare(b.name);
-      case 'created':
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-      case 'modified':
-        return new Date(b.lastModified).getTime() - new Date(a.lastModified).getTime();
-      case 'usage':
+      case "created":
+        return (
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+      case "modified":
+        return (
+          new Date(b.lastModified).getTime() -
+          new Date(a.lastModified).getTime()
+        );
+      case "usage":
         return b.usageCount - a.usageCount;
       default:
         return 0;
     }
   });
 
-  const handleStatusChange = (templateId: string, newStatus: WorkflowTemplate['status']) => {
-    setTemplates(prev => 
-      prev.map(template => 
-        template.id === templateId 
-          ? { ...template, status: newStatus, lastModified: new Date().toISOString() }
+  const handleStatusChange = (
+    templateId: string,
+    newStatus: WorkflowTemplate["status"]
+  ) => {
+    setTemplates((prev) =>
+      prev.map((template) =>
+        template.id === templateId
+          ? {
+              ...template,
+              status: newStatus,
+              lastModified: new Date().toISOString(),
+            }
           : template
       )
     );
@@ -153,42 +175,46 @@ export default function WorkflowsPage() {
   };
 
   const handleDuplicate = (templateId: string) => {
-    const template = templates.find(t => t.id === templateId);
+    const template = templates.find((t) => t.id === templateId);
     if (template) {
       const duplicatedTemplate: WorkflowTemplate = {
         ...template,
         id: Date.now().toString(),
         name: `${template.name} (Copy)`,
-        status: 'draft',
+        status: "draft",
         createdAt: new Date().toISOString(),
         lastModified: new Date().toISOString(),
         usageCount: 0,
-        averageCompletionTime: 0
+        averageCompletionTime: 0,
       };
-      setTemplates(prev => [duplicatedTemplate, ...prev]);
+      setTemplates((prev) => [duplicatedTemplate, ...prev]);
     }
     setActiveDropdown(null);
   };
 
   const handleDelete = (templateId: string) => {
-    setTemplates(prev => prev.filter(t => t.id !== templateId));
+    setTemplates((prev) => prev.filter((t) => t.id !== templateId));
     setShowDeleteModal(null);
   };
 
   const handleExportTemplate = (templateId: string) => {
-    const template = templates.find(t => t.id === templateId);
+    const template = templates.find((t) => t.id === templateId);
     if (template) {
       const exportData = {
         ...template,
         exportedAt: new Date().toISOString(),
-        exportedBy: 'Current User'
+        exportedBy: "Current User",
       };
-      
-      const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+
+      const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+        type: "application/json",
+      });
       const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = url;
-      a.download = `workflow-template-${template.name.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.json`;
+      a.download = `workflow-template-${template.name
+        .replace(/[^a-z0-9]/gi, "-")
+        .toLowerCase()}.json`;
       a.click();
       window.URL.revokeObjectURL(url);
     }
@@ -197,7 +223,7 @@ export default function WorkflowsPage() {
 
   const handleViewDetails = (templateId: string) => {
     // Navigate to template details or show details modal
-    console.log('View details for template:', templateId);
+    console.log("View details for template:", templateId);
     setActiveDropdown(null);
   };
 
@@ -205,42 +231,42 @@ export default function WorkflowsPage() {
     setActiveDropdown(activeDropdown === templateId ? null : templateId);
   };
 
-  const getStatusColor = (status: WorkflowTemplate['status']) => {
+  const getStatusColor = (status: WorkflowTemplate["status"]) => {
     switch (status) {
-      case 'active':
-        return 'bg-green-100 text-green-800';
-      case 'draft':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'archived':
-        return 'bg-gray-100 text-gray-800';
+      case "active":
+        return "bg-green-100 text-green-800";
+      case "draft":
+        return "bg-yellow-100 text-yellow-800";
+      case "archived":
+        return "bg-gray-100 text-gray-800";
       default:
-        return 'bg-gray-100 text-gray-800';
+        return "bg-gray-100 text-gray-800";
     }
   };
 
-  const getStatusIcon = (status: WorkflowTemplate['status']) => {
+  const getStatusIcon = (status: WorkflowTemplate["status"]) => {
     switch (status) {
-      case 'active':
-        return 'ri-play-circle-line';
-      case 'draft':
-        return 'ri-draft-line';
-      case 'archived':
-        return 'ri-archive-line';
+      case "active":
+        return "ri-play-circle-line";
+      case "draft":
+        return "ri-draft-line";
+      case "archived":
+        return "ri-archive-line";
       default:
-        return 'ri-circle-line';
+        return "ri-circle-line";
     }
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-GB');
+    return new Date(dateString).toLocaleDateString("en-GB");
   };
 
   const formatDateTime = (dateString: string) => {
-    return new Date(dateString).toLocaleString('en-GB');
+    return new Date(dateString).toLocaleString("en-GB");
   };
 
-  const getStatusCount = (status: WorkflowTemplate['status']) => {
-    return templates.filter(template => template.status === status).length;
+  const getStatusCount = (status: WorkflowTemplate["status"]) => {
+    return templates.filter((template) => template.status === status).length;
   };
 
   const getTotalUsage = () => {
@@ -248,27 +274,33 @@ export default function WorkflowsPage() {
   };
 
   const getAverageCompletionTime = () => {
-    const activeTemplates = templates.filter(t => t.status === 'active' && t.usageCount > 0);
+    const activeTemplates = templates.filter(
+      (t) => t.status === "active" && t.usageCount > 0
+    );
     if (activeTemplates.length === 0) return 0;
-    
-    const totalTime = activeTemplates.reduce((sum, template) => sum + template.averageCompletionTime, 0);
+
+    const totalTime = activeTemplates.reduce(
+      (sum, template) => sum + template.averageCompletionTime,
+      0
+    );
     return Math.round(totalTime / activeTemplates.length);
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      
-      <div className="pt-20 px-6 py-8">
+
+      <div className="pt-20 px-2 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-8">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8">
-            <div className="flex items-center justify-between">
+          <div className="mb-6 sm:mb-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
                   Workflow Templates
                 </h1>
-                <p className="text-gray-600">
-                  Manage and configure workflow templates for different matter types
+                <p className="text-gray-600 mt-2">
+                  Manage and configure workflow templates for different matter
+                  types
                 </p>
               </div>
               <Link
@@ -282,12 +314,16 @@ export default function WorkflowsPage() {
           </div>
 
           {/* Summary Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Templates</p>
-                  <p className="text-2xl font-bold text-gray-900">{templates.length}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Total Templates
+                  </p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {templates.length}
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                   <i className="ri-flow-chart w-6 h-6 text-blue-600 flex items-center justify-center"></i>
@@ -298,8 +334,12 @@ export default function WorkflowsPage() {
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Active Templates</p>
-                  <p className="text-2xl font-bold text-gray-900">{getStatusCount('active')}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Active Templates
+                  </p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {getStatusCount("active")}
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                   <i className="ri-play-circle-line w-6 h-6 text-green-600 flex items-center justify-center"></i>
@@ -310,8 +350,12 @@ export default function WorkflowsPage() {
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Usage</p>
-                  <p className="text-2xl font-bold text-gray-900">{getTotalUsage()}</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Total Usage
+                  </p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {getTotalUsage()}
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                   <i className="ri-bar-chart-line w-6 h-6 text-purple-600 flex items-center justify-center"></i>
@@ -322,8 +366,12 @@ export default function WorkflowsPage() {
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Avg. Completion</p>
-                  <p className="text-2xl font-bold text-gray-900">{getAverageCompletionTime()}d</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Avg. Completion
+                  </p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {getAverageCompletionTime()}d
+                  </p>
                 </div>
                 <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
                   <i className="ri-time-line w-6 h-6 text-orange-600 flex items-center justify-center"></i>
@@ -333,15 +381,17 @@ export default function WorkflowsPage() {
           </div>
 
           {/* Filters */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">Filters</h3>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900">
+                Filters
+              </h3>
               <button
                 onClick={() => {
-                  setSelectedStatus('all');
-                  setSelectedMatterType('all');
-                  setSearchTerm('');
-                  setSortBy('modified');
+                  setSelectedStatus("all");
+                  setSelectedMatterType("all");
+                  setSearchTerm("");
+                  setSortBy("modified");
                 }}
                 className="text-blue-600 hover:text-blue-800 text-sm cursor-pointer"
               >
@@ -351,35 +401,49 @@ export default function WorkflowsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Status
+                </label>
                 <select
                   value={selectedStatus}
                   onChange={(e) => setSelectedStatus(e.target.value as any)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 pr-8"
                 >
                   <option value="all">All Status</option>
-                  <option value="active">Active ({getStatusCount('active')})</option>
-                  <option value="draft">Draft ({getStatusCount('draft')})</option>
-                  <option value="archived">Archived ({getStatusCount('archived')})</option>
+                  <option value="active">
+                    Active ({getStatusCount("active")})
+                  </option>
+                  <option value="draft">
+                    Draft ({getStatusCount("draft")})
+                  </option>
+                  <option value="archived">
+                    Archived ({getStatusCount("archived")})
+                  </option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Matter Type</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Matter Type
+                </label>
                 <select
                   value={selectedMatterType}
                   onChange={(e) => setSelectedMatterType(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 pr-8"
                 >
                   <option value="all">All Types</option>
-                  {matterTypes.map(type => (
-                    <option key={type} value={type}>{type}</option>
+                  {matterTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
                   ))}
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Sort By
+                </label>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as any)}
@@ -393,7 +457,9 @@ export default function WorkflowsPage() {
               </div>
 
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Search</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Search
+                </label>
                 <div className="relative">
                   <input
                     type="text"
@@ -409,25 +475,40 @@ export default function WorkflowsPage() {
           </div>
 
           {/* Templates Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto">
             {sortedTemplates.map((template) => (
-              <div key={template.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+              <div
+                key={template.id}
+                className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+              >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center space-x-3">
                     <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <i className={`${getStatusIcon(template.status)} w-5 h-5 text-blue-600 flex items-center justify-center`}></i>
+                      <i
+                        className={`${getStatusIcon(
+                          template.status
+                        )} w-5 h-5 text-blue-600 flex items-center justify-center`}
+                      ></i>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">{template.name}</h3>
-                      <p className="text-sm text-gray-500">{template.matterType}</p>
+                      <h3 className="font-semibold text-gray-900">
+                        {template.name}
+                      </h3>
+                      <p className="text-sm text-gray-500">
+                        {template.matterType}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(template.status)}`}>
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
+                        template.status
+                      )}`}
+                    >
                       {template.status}
                     </span>
                     <div className="relative">
-                      <button 
+                      <button
                         onClick={() => toggleDropdown(template.id)}
                         className="p-1 text-gray-400 hover:text-gray-600 cursor-pointer"
                       >
@@ -436,7 +517,7 @@ export default function WorkflowsPage() {
 
                       {/* Dropdown Menu */}
                       {activeDropdown === template.id && (
-                        <div className="absolute right-0 top-8 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-10">
+                        <div className="absolute right-0 top-8 w-48 max-h-64 overflow-y-auto bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-10">
                           <Link
                             href={`/admin/workflows/${template.id}/edit`}
                             className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
@@ -445,7 +526,7 @@ export default function WorkflowsPage() {
                             <i className="ri-edit-line w-4 h-4 mr-3 text-blue-600 flex items-center justify-center"></i>
                             Edit Template
                           </Link>
-                          
+
                           <button
                             onClick={() => handleViewDetails(template.id)}
                             className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
@@ -453,7 +534,7 @@ export default function WorkflowsPage() {
                             <i className="ri-eye-line w-4 h-4 mr-3 text-gray-600 flex items-center justify-center"></i>
                             View Details
                           </button>
-                          
+
                           <button
                             onClick={() => handleDuplicate(template.id)}
                             className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
@@ -461,7 +542,7 @@ export default function WorkflowsPage() {
                             <i className="ri-file-copy-line w-4 h-4 mr-3 text-green-600 flex items-center justify-center"></i>
                             Duplicate
                           </button>
-                          
+
                           <button
                             onClick={() => handleExportTemplate(template.id)}
                             className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
@@ -469,40 +550,48 @@ export default function WorkflowsPage() {
                             <i className="ri-download-line w-4 h-4 mr-3 text-purple-600 flex items-center justify-center"></i>
                             Export Template
                           </button>
-                          
+
                           <div className="border-t border-gray-200 my-2"></div>
-                          
+
                           <div className="px-4 py-2">
-                            <p className="text-xs text-gray-500 mb-2">Change Status</p>
+                            <p className="text-xs text-gray-500 mb-2">
+                              Change Status
+                            </p>
                             <div className="space-y-1">
                               <button
-                                onClick={() => handleStatusChange(template.id, 'active')}
+                                onClick={() =>
+                                  handleStatusChange(template.id, "active")
+                                }
                                 className={`flex items-center w-full px-2 py-1 text-xs rounded cursor-pointer ${
-                                  template.status === 'active' 
-                                    ? 'bg-green-100 text-green-800' 
-                                    : 'text-gray-600 hover:bg-gray-100'
+                                  template.status === "active"
+                                    ? "bg-green-100 text-green-800"
+                                    : "text-gray-600 hover:bg-gray-100"
                                 }`}
                               >
                                 <i className="ri-play-circle-line w-3 h-3 mr-2 flex items-center justify-center"></i>
                                 Active
                               </button>
                               <button
-                                onClick={() => handleStatusChange(template.id, 'draft')}
+                                onClick={() =>
+                                  handleStatusChange(template.id, "draft")
+                                }
                                 className={`flex items-center w-full px-2 py-1 text-xs rounded cursor-pointer ${
-                                  template.status === 'draft' 
-                                    ? 'bg-yellow-100 text-yellow-800' 
-                                    : 'text-gray-600 hover:bg-gray-100'
+                                  template.status === "draft"
+                                    ? "bg-yellow-100 text-yellow-800"
+                                    : "text-gray-600 hover:bg-gray-100"
                                 }`}
                               >
                                 <i className="ri-draft-line w-3 h-3 mr-2 flex items-center justify-center"></i>
                                 Draft
                               </button>
                               <button
-                                onClick={() => handleStatusChange(template.id, 'archived')}
+                                onClick={() =>
+                                  handleStatusChange(template.id, "archived")
+                                }
                                 className={`flex items-center w-full px-2 py-1 text-xs rounded cursor-pointer ${
-                                  template.status === 'archived' 
-                                    ? 'bg-gray-100 text-gray-800' 
-                                    : 'text-gray-600 hover:bg-gray-100'
+                                  template.status === "archived"
+                                    ? "bg-gray-100 text-gray-800"
+                                    : "text-gray-600 hover:bg-gray-100"
                                 }`}
                               >
                                 <i className="ri-archive-line w-3 h-3 mr-2 flex items-center justify-center"></i>
@@ -510,9 +599,9 @@ export default function WorkflowsPage() {
                               </button>
                             </div>
                           </div>
-                          
+
                           <div className="border-t border-gray-200 my-2"></div>
-                          
+
                           <button
                             onClick={() => setShowDeleteModal(template.id)}
                             className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 cursor-pointer"
@@ -526,24 +615,34 @@ export default function WorkflowsPage() {
                   </div>
                 </div>
 
-                <p className="text-sm text-gray-600 mb-4">{template.description}</p>
+                <p className="text-sm text-gray-600 mb-4">
+                  {template.description}
+                </p>
 
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div>
                     <p className="text-xs text-gray-500">Steps</p>
-                    <p className="font-medium text-gray-900">{template.stepCount}</p>
+                    <p className="font-medium text-gray-900">
+                      {template.stepCount}
+                    </p>
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Usage</p>
-                    <p className="font-medium text-gray-900">{template.usageCount}</p>
+                    <p className="font-medium text-gray-900">
+                      {template.usageCount}
+                    </p>
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Avg. Time</p>
-                    <p className="font-medium text-gray-900">{template.averageCompletionTime}d</p>
+                    <p className="font-medium text-gray-900">
+                      {template.averageCompletionTime}d
+                    </p>
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Created</p>
-                    <p className="font-medium text-gray-900">{formatDate(template.createdAt)}</p>
+                    <p className="font-medium text-gray-900">
+                      {formatDate(template.createdAt)}
+                    </p>
                   </div>
                 </div>
 
@@ -579,7 +678,12 @@ export default function WorkflowsPage() {
                   <div className="flex items-center space-x-2">
                     <select
                       value={template.status}
-                      onChange={(e) => handleStatusChange(template.id, e.target.value as WorkflowTemplate['status'])}
+                      onChange={(e) =>
+                        handleStatusChange(
+                          template.id,
+                          e.target.value as WorkflowTemplate["status"]
+                        )
+                      }
                       className="px-2 py-1 border border-gray-300 rounded text-xs pr-6"
                     >
                       <option value="active">Active</option>
@@ -596,11 +700,15 @@ export default function WorkflowsPage() {
           {sortedTemplates.length === 0 && (
             <div className="text-center py-12">
               <i className="ri-flow-chart w-12 h-12 text-gray-400 mx-auto mb-4 flex items-center justify-center"></i>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No Templates Found</h3>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                No Templates Found
+              </h3>
               <p className="text-gray-600 mb-4">
-                {searchTerm || selectedStatus !== 'all' || selectedMatterType !== 'all' 
-                  ? 'No templates match your current filters.' 
-                  : 'Create your first workflow template to get started.'}
+                {searchTerm ||
+                selectedStatus !== "all" ||
+                selectedMatterType !== "all"
+                  ? "No templates match your current filters."
+                  : "Create your first workflow template to get started."}
               </p>
               <Link
                 href="/admin/workflows/new"
@@ -614,7 +722,8 @@ export default function WorkflowsPage() {
           {/* Results Summary */}
           <div className="bg-blue-50 rounded-lg p-4 mt-8">
             <p className="text-sm text-blue-700">
-              Showing {sortedTemplates.length} of {templates.length} workflow templates
+              Showing {sortedTemplates.length} of {templates.length} workflow
+              templates
             </p>
           </div>
         </div>
@@ -629,12 +738,17 @@ export default function WorkflowsPage() {
                 <i className="ri-error-warning-line w-5 h-5 text-red-600 flex items-center justify-center"></i>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">Delete Template</h3>
-                <p className="text-sm text-gray-600">This action cannot be undone</p>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Delete Template
+                </h3>
+                <p className="text-sm text-gray-600">
+                  This action cannot be undone
+                </p>
               </div>
             </div>
             <p className="text-gray-700 mb-6">
-              Are you sure you want to delete this workflow template? This will not affect existing matters using this template.
+              Are you sure you want to delete this workflow template? This will
+              not affect existing matters using this template.
             </p>
             <div className="flex justify-end space-x-3">
               <button
@@ -656,8 +770,8 @@ export default function WorkflowsPage() {
 
       {/* Click outside to close dropdown */}
       {activeDropdown && (
-        <div 
-          className="fixed inset-0 z-5" 
+        <div
+          className="fixed inset-0 z-5"
           onClick={() => setActiveDropdown(null)}
         ></div>
       )}

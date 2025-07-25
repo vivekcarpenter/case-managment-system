@@ -8,6 +8,7 @@ import GlobalSearch from './GlobalSearch';
 export default function Header() {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showAdminMenu,setShowAdminMenu] = useState(false);
 
   const notifications = [
     { id: 1, title: 'New document uploaded', message: 'Sarah Williams uploaded consent form', time: '2 min ago', type: 'document' },
@@ -53,14 +54,14 @@ export default function Header() {
             {/* Admin Dropdown */}
             <div className="relative">
               <button
-                onClick={() => setShowUserMenu(!showUserMenu)}
+                onClick={() => setShowAdminMenu(!showAdminMenu)}
                 className="flex items-center space-x-1 text-gray-700 font-medium hover:text-white hover:bg-orange-500 px-3 py-2 rounded-lg transition-all duration-200"
               >
                 <span>Admin</span>
                 <i className="ri-arrow-down-s-line w-4 h-4"></i>
               </button>
               
-              {showUserMenu && (
+              {showAdminMenu && (
                 <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
                   {adminMenuItems.map((item) => (
                     <Link

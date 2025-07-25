@@ -262,11 +262,11 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
     }
   };
 
-  if (loading) {
+   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50">
         <Header />
-        <div className="pt-20 px-6 py-8">
+        <div className="pt-20 px-2 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-8">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <div className="animate-pulse space-y-4">
@@ -288,7 +288,7 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
     return (
       <div className="min-h-screen bg-gray-50">
         <Header />
-        <div className="pt-20 px-6 py-8">
+        <div className="pt-20 px-2 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-8">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
               <i className="ri-user-line w-12 h-12 text-gray-400 mx-auto mb-4 flex items-center justify-center"></i>
@@ -310,15 +310,16 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      <div className="pt-20 px-6 py-8">
+      <div className="pt-20 px-2 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-8">
         <div className="max-w-4xl mx-auto">
+
           {/* Header */}
           <div className="mb-8">
-            <div className="flex items-center justify-between">
-              <div>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <div className="w-full sm:w-auto">
                 <div className="flex items-center space-x-3 mb-2">
                   <Link
                     href="/clients"
@@ -326,11 +327,11 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
                   >
                     <i className="ri-arrow-left-line w-5 h-5 flex items-center justify-center"></i>
                   </Link>
-                  <h1 className="text-3xl font-bold text-gray-900">Edit Client</h1>
+                  <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Edit Client</h1>
                 </div>
                 <p className="text-gray-600">Update client information and settings</p>
               </div>
-              <div className="flex items-center space-x-3">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
                 <button
                   onClick={handleCancel}
                   className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 cursor-pointer"
@@ -361,7 +362,7 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
 
           {/* Client Information Form */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-            <div className="flex items-center space-x-3 mb-6">
+            <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-3 mb-6">
               <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: '#f46524' }}>
                 <span className="text-white font-medium text-lg">
                   {client.fullName.split(' ').map(n => n[0]).join('')}
@@ -374,6 +375,8 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* ...inputs unchanged, use w-full on all */}
+              {/* Full Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Full Name *
@@ -389,7 +392,7 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
                   <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
                 )}
               </div>
-
+              {/* Date of Birth */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Date of Birth *
@@ -404,7 +407,7 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
                   <p className="text-red-500 text-sm mt-1">{errors.dateOfBirth}</p>
                 )}
               </div>
-
+              {/* Email */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Email Address *
@@ -420,7 +423,7 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
                   <p className="text-red-500 text-sm mt-1">{errors.email}</p>
                 )}
               </div>
-
+              {/* Phone */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Phone Number *
@@ -437,7 +440,7 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
                   <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
                 )}
               </div>
-
+              {/* Address */}
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Address *
@@ -492,7 +495,7 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Associated Matters</h3>
             <div className="space-y-3">
               {client.matterReferences.map((ref) => (
-                <div key={ref} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div key={ref} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div className="flex items-center space-x-3">
                     <i className="ri-file-text-line w-5 h-5 text-gray-400 flex items-center justify-center"></i>
                     <div>
@@ -502,7 +505,7 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
                   </div>
                   <Link
                     href={`/matters/${ref.split('-').pop()}`}
-                    className="text-blue-600 hover:text-blue-800 cursor-pointer"
+                    className="text-blue-600 hover:text-blue-800 cursor-pointer mt-2 sm:mt-0"
                   >
                     <i className="ri-external-link-line w-4 h-4 flex items-center justify-center"></i>
                   </Link>
@@ -530,7 +533,6 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
                   <option value="Completed">Completed</option>
                 </select>
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Risk Assessment
@@ -549,6 +551,7 @@ export default function ClientEditPage({ clientId }: ClientEditPageProps) {
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </div>
